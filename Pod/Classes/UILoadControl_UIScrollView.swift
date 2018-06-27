@@ -27,7 +27,7 @@ extension UIScrollView {
     /*
      UILoadControl object
      */
-    public var loadControl: UILoadControl? {
+    @objc public var loadControl: UILoadControl? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.loadControl) as? UILoadControl
         }

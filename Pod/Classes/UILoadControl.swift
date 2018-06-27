@@ -25,7 +25,7 @@ public class UILoadControl: UIControl {
     override public var frame: CGRect {
         didSet{
             if (frame.size.height > heightLimit) && !loading {
-                self.sendActions(for: UIControlEvents.valueChanged)
+                self.sendActions(for: UIControl.Event.valueChanged)
             }
         }
     }
@@ -59,12 +59,12 @@ public class UILoadControl: UIControl {
     /*
      Update layout at finsih to load
      */
-    public func endLoading(){
+    @objc public func endLoading(){
         self.setLoading(isLoading: false)
         self.fixPosition()
     }
     
-    public func update() {
+    @objc public func update() {
         updateUI()
     }
 }
@@ -145,13 +145,13 @@ extension UILoadControl {
             return
         }
         
-        self.activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        self.activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorView.Style.gray)
         self.activityIndicatorView.hidesWhenStopped = false
         self.activityIndicatorView.color = UIColor.darkGray
         self.activityIndicatorView.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         
         addSubview(self.activityIndicatorView)
-        bringSubview(toFront: self.activityIndicatorView)
+        bringSubviewToFront(self.activityIndicatorView)
     }
     
     @objc fileprivate func didValueChange(sender: AnyObject?){
